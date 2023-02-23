@@ -19,6 +19,7 @@ spec:
       annotations:
         boot.spring.io/version: 2.7.5
         conventions.carto.run/applied-conventions: |-
+          add-label-convention/add-bu-label
           spring-boot-convention/auto-configure-actuators-check
           spring-boot-convention/spring-boot
           spring-boot-convention/spring-boot-graceful-shutdown
@@ -39,6 +40,7 @@ spec:
         apps.tanzu.vmware.com/auto-configure-actuators: "false"
         apps.tanzu.vmware.com/has-tests: "true"
         apps.tanzu.vmware.com/workload-type: web
+        business-unit: gbs
         carto.run/workload-name: tanzu-java-web-app
         conventions.carto.run/framework: spring-boot
         kapp.k14s.io/app: "1677181848325547856"
