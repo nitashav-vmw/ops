@@ -1,7 +1,7 @@
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  name: tanzu-java-web-app-git
+  name: tanzu-java-web-app
   annotations:
     ootb.apps.tanzu.vmware.com/servicebinding-workload: "true"
     ootb.apps.tanzu.vmware.com/apidescriptor-ref: "true"
@@ -10,12 +10,12 @@ metadata:
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/workload-type: web
     app.kubernetes.io/component: run
-    carto.run/workload-name: tanzu-java-web-app-git
+    carto.run/workload-name: tanzu-java-web-app
 spec:
   template:
     metadata:
       annotations:
-        boot.spring.io/version: 2.6.14
+        boot.spring.io/version: 2.7.5
         conventions.carto.run/applied-conventions: |-
           spring-boot-convention/auto-configure-actuators-check
           spring-boot-convention/spring-boot
@@ -28,25 +28,27 @@ spec:
           spring-boot-convention/app-live-view-appflavours-boot
           appliveview-sample/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
+        kubectl.kubernetes.io/last-applied-configuration: |
+          {"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{},"labels":{"app.kubernetes.io/part-of":"tanzu-java-web-app","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/workload-type":"web"},"name":"tanzu-java-web-app","namespace":"gbs-qa"},"spec":{"params":[{"name":"gitops_repository","value":"ssh://git@github.com/nitashav-vmw/ops.git"},{"name":"gitops_branch","value":"tanzu-java-web-app"},{"name":"gitops_ssh_secret","value":"git-ssh-ops"}],"source":{"git":{"ref":{"branch":"master"},"url":"https://github.com/nitashav-vmw/tanzu-java-web-app.git"}}}}
       labels:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: tanzu-java-web-app
         apps.tanzu.vmware.com/auto-configure-actuators: "false"
         apps.tanzu.vmware.com/has-tests: "true"
         apps.tanzu.vmware.com/workload-type: web
-        carto.run/workload-name: tanzu-java-web-app-git
+        carto.run/workload-name: tanzu-java-web-app
         conventions.carto.run/framework: spring-boot
         tanzu.app.live.view: "true"
         tanzu.app.live.view.application.actuator.path: actuator
         tanzu.app.live.view.application.actuator.port: "8080"
         tanzu.app.live.view.application.flavours: spring-boot
-        tanzu.app.live.view.application.name: tanzu-java-web-app-git
+        tanzu.app.live.view.application.name: tanzu-java-web-app
     spec:
       containers:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.health.probes.enabled="true" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: nitashav.azurecr.io/build-service/tanzu-java-web-app-git-tap-dev@sha256:84319555ca3016a0b4d498e303ea6bf6d69ce663342a71329e04eb932e8726fb
+        image: nitashav.azurecr.io/build-service/tanzu-java-web-app-gbs-qa@sha256:8c0002ab8123343b38619de0604b97fc238be03381d751ce91936ee848ef8f0f
         livenessProbe:
           httpGet:
             path: /livez
