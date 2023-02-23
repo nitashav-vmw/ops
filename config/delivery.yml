@@ -29,7 +29,7 @@ spec:
           appliveview-sample/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
         kubectl.kubernetes.io/last-applied-configuration: |
-          {"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{},"labels":{"app.kubernetes.io/part-of":"tanzu-java-web-app","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/workload-type":"web"},"name":"tanzu-java-web-app","namespace":"gbs-qa"},"spec":{"params":[{"name":"gitops_repository","value":"ssh://git@github.com/nitashav-vmw/ops.git"},{"name":"gitops_branch","value":"tanzu-java-web-app"},{"name":"gitops_ssh_secret","value":"git-ssh-ops"}],"source":{"git":{"ref":{"branch":"master"},"url":"https://github.com/nitashav-vmw/tanzu-java-web-app.git"}}}}
+          {"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{},"labels":{"app.kubernetes.io/part-of":"tanzu-java-web-app","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/workload-type":"web"},"name":"tanzu-java-web-app","namespace":"gbs-qa"},"spec":{"params":[{"name":"gitops_repository","value":"ssh://git@github.com/nitashav-vmw/ops.git"},{"name":"gitops_branch","value":"tanzu-java-web-app"},{"name":"gitops_ssh_secret","value":"git-ssh"}],"source":{"git":{"ref":{"branch":"master"},"url":"https://github.com/nitashav-vmw/tanzu-java-web-app.git"}}}}
       labels:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: tanzu-java-web-app
@@ -48,7 +48,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.health.probes.enabled="true" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: nitashav.azurecr.io/build-service/tanzu-java-web-app-gbs-qa@sha256:8c0002ab8123343b38619de0604b97fc238be03381d751ce91936ee848ef8f0f
+        image: nitashav.azurecr.io/build-service/tanzu-java-web-app-gbs-qa@sha256:114dd76f1b2d6258df3f2826a0a5c172aee90d665f0213ca8c6284137f4474d0
         livenessProbe:
           httpGet:
             path: /livez
