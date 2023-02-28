@@ -15,14 +15,12 @@ spec:
   template:
     metadata:
       annotations:
-        apps.tanzu.vmware.com/debug: "true"
         apps.tanzu.vmware.com/live-update: "true"
         autoscaling.knative.dev/maxScale: "1"
         autoscaling.knative.dev/minScale: "1"
         boot.spring.io/version: 3.0.2
         conventions.carto.run/applied-conventions: |-
           add-label-convention/add-bu-label
-          developer-conventions/debug-convention
           developer-conventions/live-update-convention
           developer-conventions/add-source-image-label
           spring-boot-convention/auto-configure-actuators-check
@@ -54,10 +52,6 @@ spec:
     spec:
       containers:
       - env:
-        - name: BPL_DEBUG_ENABLED
-          value: "true"
-        - name: BPL_DEBUG_PORT
-          value: "9005"
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.health.probes.enabled="true" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
         image: nitashav.azurecr.io/build-service/data-service-nitashav@sha256:77c5ea69a69553b5a10e4defd4401f18c8b25dd003e426d03c0155fdea888aa0
