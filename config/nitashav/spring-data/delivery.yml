@@ -15,14 +15,10 @@ spec:
   template:
     metadata:
       annotations:
-        apps.tanzu.vmware.com/live-update: "true"
-        autoscaling.knative.dev/maxScale: "1"
         autoscaling.knative.dev/minScale: "1"
         boot.spring.io/version: 3.0.2
         conventions.carto.run/applied-conventions: |-
           add-label-convention/add-bu-label
-          developer-conventions/live-update-convention
-          developer-conventions/add-source-image-label
           spring-boot-convention/auto-configure-actuators-check
           spring-boot-convention/spring-boot
           spring-boot-convention/spring-boot-graceful-shutdown
@@ -33,8 +29,9 @@ spec:
           spring-boot-convention/app-live-view-connector-boot
           spring-boot-convention/app-live-view-appflavours-boot
           appliveview-sample/app-live-view-appflavour-check
-        developer.apps.tanzu.vmware.com/image-source-digest: index.docker.io/nitashav/tap-local:latest@sha256:e86c28993aa2962221f604cc2c00910d26548b0a324a081adc3f1286344509b4
         developer.conventions/target-containers: workload
+        kubectl.kubernetes.io/last-applied-configuration: |
+          {"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{},"labels":{"app.kubernetes.io/part-of":"spring-data","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/workload-type":"web"},"name":"spring-data","namespace":"nitashav"},"spec":{"build":{"env":[{"name":"BP_JVM_VERSION","value":"17"}]},"params":[{"name":"annotations","value":{"autoscaling.knative.dev/minScale":"1"}},{"name":"gitops_repository","value":"ssh://git@github.com/nitashav-vmw/ops.git"},{"name":"gitops_branch","value":"main"},{"name":"gitops_ssh_secret","value":"git-ssh"},{"name":"gitops_server_address","value":"ssh://git@github.com"},{"name":"gitops_repository_owner","value":"nitashav-vmw"},{"name":"gitops_repository_name","value":"ops"}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/nitashav-vmw/spring-data"}}}}
       labels:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: spring-data
@@ -54,7 +51,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.health.probes.enabled="true" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: nitashav.azurecr.io/build-service/spring-data-nitashav@sha256:f92baa8d6158d447cf92a094e2b4d86abef518a8b2b3f21b702cd1960d0cacb4
+        image: nitashav.azurecr.io/build-service/spring-data-nitashav@sha256:cf08daa887e490103fe4a35cd1e520eacdd03ce7350b6b7fdac7807426dd9fb2
         livenessProbe:
           httpGet:
             path: /livez
