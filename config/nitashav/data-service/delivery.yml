@@ -35,7 +35,7 @@ spec:
           spring-boot-convention/app-live-view-connector-boot
           spring-boot-convention/app-live-view-appflavours-boot
           appliveview-sample/app-live-view-appflavour-check
-        developer.apps.tanzu.vmware.com/image-source-digest: index.docker.io/nitashav/tap-local:latest@sha256:e638a430a8332a257d48852d525f2d0e99351a302c07f456c469854b11d70685
+        developer.apps.tanzu.vmware.com/image-source-digest: index.docker.io/nitashav/tap-local:latest@sha256:6bb5345017fd3d42bb1a4a3986b42d928f8ad169d4ccb14af476a375cf7ef457
         developer.conventions/target-containers: workload
       labels:
         app.kubernetes.io/component: run
@@ -60,7 +60,7 @@ spec:
           value: "9005"
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.health.probes.enabled="true" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: nitashav.azurecr.io/build-service/data-service-nitashav@sha256:afa6d6e59a0c5f1b08194faea00c629050dac81ada67dbcccf507f4a826d821d
+        image: nitashav.azurecr.io/build-service/data-service-nitashav@sha256:77c5ea69a69553b5a10e4defd4401f18c8b25dd003e426d03c0155fdea888aa0
         livenessProbe:
           httpGet:
             path: /livez
