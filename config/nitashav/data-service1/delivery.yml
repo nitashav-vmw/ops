@@ -60,7 +60,7 @@ spec:
           value: "9005"
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.health.probes.enabled="true" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: nitashav.azurecr.io/build-service/data-service1-nitashav@sha256:4394e71713d558b3dbc1f3d9d4de4cd1a4a0cde367502ed80a48c310cfabd0ca
+        image: nitashav.azurecr.io/build-service/data-service1-nitashav@sha256:d9f32b0bb1c1249c155a4972f1666bc977172fd581696967fb8201f243694564
         livenessProbe:
           httpGet:
             path: /livez
