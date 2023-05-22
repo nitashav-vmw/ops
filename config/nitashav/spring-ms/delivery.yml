@@ -60,7 +60,7 @@ spec:
           value: "9005"
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details="always" -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include="*" -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: nitashav.azurecr.io/build-service/spring-ms-nitashav@sha256:1a589a57615bde5eb0e2840faf18268ba61ef528425a999bebcfbcd9bb710337
+        image: nitashav.azurecr.io/build-service/spring-ms-nitashav@sha256:1b66f135e6cd684a8c0ed217bd9ce8bc3928e4c13a8b012da15f57421d61fc8d
         livenessProbe:
           httpGet:
             path: /livez
