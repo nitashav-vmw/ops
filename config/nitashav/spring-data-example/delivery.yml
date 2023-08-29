@@ -54,7 +54,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.health.probes.enabled="true" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: nitashav.azurecr.io/build-service/spring-data-example-nitashav@sha256:d0340504fc840d7f969e704c16465c9dfdcfe37389fb0920f366c980997927ad
+        image: nitashav.azurecr.io/build-service/spring-data-example-nitashav@sha256:6bc807324aa8b629a24b9fac87443ce920f2a46eef682d60485e80a10da16179
         livenessProbe:
           httpGet:
             path: /livez
